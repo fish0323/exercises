@@ -13,7 +13,6 @@ let fr = 10;
 function setup() {
     const canvas = createCanvas(windowWidth, windowHeight - 100);
     canvas.parent(document.querySelector('#canvas'));
-    frameRate(fr);
     background(255);
     columns = floor(width / unitLength);
     rows = floor(height / unitLength);
@@ -27,7 +26,7 @@ function setup() {
     init();
 }
 
-function  init() {
+function init() {
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             currentBoard[i][j] = 0;
@@ -38,15 +37,16 @@ function  init() {
 
 function draw() {
     // background(255);
+    frameRate(fr);
     generate();
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
-            if (currentBoard[i][j] === 1){
+            if (currentBoard[i][j] === 1) {
                 fill(boxColor);
                 fill(boxColor2);
             } else {
                 fill(0);
-            } 
+            }
             stroke(strokeColor);
             rect(i * unitLength, j * unitLength, unitLength, unitLength);
         }
@@ -61,7 +61,7 @@ function generate() {
             let neighbors = 0;
             for (let i of [-1, 0, 1]) {
                 for (let j of [-1, 0, 1]) {
-                    if( i == 0 && j == 0 ){
+                    if (i == 0 && j == 0) {
                         // the cell itself is not its own neighbor
                         continue;
                     }
@@ -94,7 +94,7 @@ function generate() {
 /**
  * When mouse is dragged
  */
- function mouseDragged() {
+function mouseDragged() {
     /**
      * If the mouse coordinate is outside the board
      */
@@ -122,6 +122,8 @@ document.querySelector(".startButton").addEventListener('click', () => {
     loop();
 });
 
+
+
 document.querySelector(".stopButton").addEventListener('click', () => {
     noLoop();
 });
@@ -131,3 +133,17 @@ document.querySelector(".resetButton").addEventListener('click', () => {
     loop();
 });
 
+// document.querySelector("#sliderRange"),addEventListener('change', () => {
+//     output.innerHTML = this.value;
+//     fr = parseInt(this.value)
+// })
+
+let rangeSlider = document.getElementById("sliderRange");
+const output = document.getElementById("demo");
+output.innerHTML = rangeSlider.value;
+
+
+rangeSlider.oninput = function () {
+    output.innerHTML = this.value;
+    fr = parseInt(this.value)
+}
