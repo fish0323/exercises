@@ -1,17 +1,16 @@
 const unitLength = 20;
-const boxColor = "#00ff00";
-const boxColor2 = 150;
-const strokeColor = "green";
+let boxColor = "#ffffff";
+let boxColor2 = "rgba(0,0,0,0.3)";
+let strokeColor = "green";
 let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
 let currentBoard;
 let nextBoard;
-//---------------------------------------------------------
 let fr = 10;
-
+let on99;
 
 function setup() {
-    const canvas = createCanvas(windowWidth, windowHeight - 100);
+    const canvas = createCanvas(windowWidth - 100, windowHeight - 100);
     canvas.parent(document.querySelector('#canvas'));
     background(255);
     columns = floor(width / unitLength);
@@ -39,10 +38,13 @@ function draw() {
     // background(255);
     frameRate(fr);
     generate();
+
+
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             if (currentBoard[i][j] === 1) {
                 fill(boxColor);
+            } else if (nextBoard[i][j] === 1) {
                 fill(boxColor2);
             } else {
                 fill(0);
@@ -122,8 +124,6 @@ document.querySelector(".startButton").addEventListener('click', () => {
     loop();
 });
 
-
-
 document.querySelector(".stopButton").addEventListener('click', () => {
     noLoop();
 });
@@ -133,17 +133,31 @@ document.querySelector(".resetButton").addEventListener('click', () => {
     loop();
 });
 
-// document.querySelector("#sliderRange"),addEventListener('change', () => {
-//     output.innerHTML = this.value;
-//     fr = parseInt(this.value)
-// })
+document.querySelector("#sliderRange").addEventListener('change', () => {
+    demo.innerHTML = sliderRange.value;
+    fr = parseInt(sliderRange.value);
+});
 
-let rangeSlider = document.getElementById("sliderRange");
-const output = document.getElementById("demo");
-output.innerHTML = rangeSlider.value;
+let changeBoxColors = document.querySelector("#boxColors");
+changeBoxColors.addEventListener("change", () => {
+    boxColor = boxColors.value;
+});
 
+document.querySelector(".randomButton").addEventListener('click', () => {
+        for (let i = 0; i < columns; i++) {
+            for (let j = 0; j < rows; j++) {
+                if (currentBoard[i][j] === 0) {
+                    Math.random(fill(boxColor));
+                }
+            }
+        }
+});
 
-rangeSlider.oninput = function () {
-    output.innerHTML = this.value;
-    fr = parseInt(this.value)
-}
+document.querySelector("#diesOfLoneliness"), addEventListener('change', () => {
+    // neighbors = diesOfLoneliness.value
+    on99 = diesOfLoneliness.value;
+    console.log("A", on99)
+    console.log("B", diesOfLoneliness.value)
+    // generate()
+});
+

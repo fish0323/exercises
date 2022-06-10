@@ -12,23 +12,35 @@
 </head>
 
 <body>
-    <h1>Game Of Life!!</h1>
-
     <header>
-
+        <h1>Game Of Life!!</h1>
     </header>
 
     <div class="GameBoard">
         <div id='canvas'></div>
-        <button type="button" class="btn btn-success startButton">Start</button>
-        <button type="button" class="btn btn-danger stopButton">Stop</button>
-        <button type="button" class="btn btn-dark resetButton">Reset</button>
-
+    </div>
+    <div class="options">
+        <div class="buttons">
+            <button type="button" class="btn btn-success startButton">Start</button>
+            <button type="button" class="btn btn-danger stopButton">Stop</button>
+            <button type="button" class="btn btn-dark resetButton">Reset</button>
+            <button type="button" class="btn btn-primary randomButton">Random</button>
+        </div>
         <div class="rangeslider">
             <p>Use the slider to increment or decrement speed.</p>
-            <input type="range" min="1" max="100" value="50" class="myslider" id="sliderRange">
-            <p>Speed: <span id="demo"></span></p>
+            <input type="range" min="1" max="100" value="20" class="myslider" id="sliderRange">
+            <p>Speed: <span id="demo">20</span></p>
         </div>
+        <div class ="changeColor">
+              <label for="exampleColorInput" class="form-label">Box Color picker</label>
+              <input type="color" class="form-control form-control-color" id="boxColors" value="#ffffff" title="Choose your color">
+        </div>
+        <div class="rulesOfSurvival">
+            <input class="form-control" type="number" placeholder="dies of loneliness" id ="diesOfLoneliness" aria-label="default input example" value="">
+        </div>
+  
+
+        
     </div>
 
     <footer>
