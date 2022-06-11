@@ -1,18 +1,23 @@
 const unitLength = 20;
+let strokeColor = "green";
 let boxColor = "#ffffff";
 let boxColor2 = "rgba(0,0,0,0.3)";
-let strokeColor = "green";
+let strokeColors = strokeColor;
 let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
 let currentBoard;
 let nextBoard;
 let fr = 10;
-let on99;
+let loneliness = 2;
+let overpopulation = 3;
+let newLife = 3;
+let backColor = 0;
+
 
 function setup() {
     const canvas = createCanvas(windowWidth - 100, windowHeight - 100);
     canvas.parent(document.querySelector('#canvas'));
-    background(255);
+    // background(255);
     columns = floor(width / unitLength);
     rows = floor(height / unitLength);
 
@@ -47,7 +52,7 @@ function draw() {
             } else if (nextBoard[i][j] === 1) {
                 fill(boxColor2);
             } else {
-                fill(0);
+                fill(backColor);
             }
             stroke(strokeColor);
             rect(i * unitLength, j * unitLength, unitLength, unitLength);
@@ -73,13 +78,13 @@ function generate() {
             }
 
             // Rules of Life
-            if (currentBoard[x][y] == 1 && neighbors < 2) {
+            if (currentBoard[x][y] == 1 && neighbors < loneliness) {
                 // Die of Loneliness
                 nextBoard[x][y] = 0;
-            } else if (currentBoard[x][y] == 1 && neighbors > 3) {
+            } else if (currentBoard[x][y] == 1 && neighbors > overpopulation) {
                 // Die of Overpopulation
                 nextBoard[x][y] = 0;
-            } else if (currentBoard[x][y] == 0 && neighbors == 3) {
+            } else if (currentBoard[x][y] == 0 && neighbors == newLife) {
                 // New life due to Reproduction
                 nextBoard[x][y] = 1;
             } else {
@@ -88,6 +93,7 @@ function generate() {
             }
         }
     }
+
 
     // Swap the nextBoard to be the current Board
     [currentBoard, nextBoard] = [nextBoard, currentBoard];
@@ -143,21 +149,70 @@ changeBoxColors.addEventListener("change", () => {
     boxColor = boxColors.value;
 });
 
-document.querySelector(".randomButton").addEventListener('click', () => {
-        for (let i = 0; i < columns; i++) {
-            for (let j = 0; j < rows; j++) {
-                if (currentBoard[i][j] === 0) {
-                    Math.random(fill(boxColor));
-                }
+
+function dol() {
+    loneliness = parseInt(diesOfLoneliness.value);
+};
+
+document.querySelector("#diesOfLoneliness").addEventListener('change', () => {
+    dol()
+});
+
+function doo() {
+    overpopulation = parseInt(dieOfOverpopulation.value);
+};
+
+document.querySelector("#dieOfOverpopulation").addEventListener('change', () => {
+    doo()
+    console.log(overpopulation)
+});
+
+function nlr() {
+    newLife = parseInt(newLifeReproduction.value);
+};
+
+document.querySelector("#newLifeReproduction").addEventListener('change', () => {
+    nlr()
+    console.log(newLife)
+});
+
+
+function randomBoard() {
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            let isLive = Math.round(Math.random());
+            if (isLive == 1 && (currentBoard[i][j] = 1)) {
+                fill(boxColor);
+                stroke(strokeColor);
+                rect(i * unitLength, j * unitLength, unitLength, unitLength);
             }
         }
+    }
+}
+
+document.querySelector(".randomButton").addEventListener('click', () => {
+    randomBoard()
 });
 
-document.querySelector("#diesOfLoneliness"), addEventListener('change', () => {
-    // neighbors = diesOfLoneliness.value
-    on99 = diesOfLoneliness.value;
-    console.log("A", on99)
-    console.log("B", diesOfLoneliness.value)
-    // generate()
-});
+function darkModeOff() {
+    console.log("!!")
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            if (currentBoard[i][j] === 1) {
+                fill(boxColor);
+            } else if (nextBoard[i][j] === 1) {
+                fill(boxColor2);
+            } else {
+                fill(backColor);
+            }
+            backColor = "white";
+            strokeColor = "black";
+            stroke(strokeColor);
+            rect(i * unitLength, j * unitLength, unitLength, unitLength);
+        }
+    }
+};
 
+document.querySelector(".form-check-input").addEventListener('click', () => {
+    darkModeOff()
+});
