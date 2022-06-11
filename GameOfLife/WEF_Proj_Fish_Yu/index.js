@@ -195,7 +195,6 @@ document.querySelector(".randomButton").addEventListener('click', () => {
 });
 
 function darkModeOff() {
-    console.log("!!")
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             if (currentBoard[i][j] === 1) {
@@ -205,8 +204,18 @@ function darkModeOff() {
             } else {
                 fill(backColor);
             }
-            backColor = "white";
+
+            if (backColor != "white") {
+                backColor = "white"
+            }
+
+            // else {
+            //     backColor = "black"
+            // }
+
+            // backColor = "white";
             strokeColor = "black";
+            boxColor = "#00FF09";
             stroke(strokeColor);
             rect(i * unitLength, j * unitLength, unitLength, unitLength);
         }
@@ -215,4 +224,23 @@ function darkModeOff() {
 
 document.querySelector(".form-check-input").addEventListener('click', () => {
     darkModeOff()
+    darkModeOff()
+});
+
+function addPattern() {
+    console.log("!!")
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            let isLive = Math.round(Math.random());
+            if (isLive == 1 && (currentBoard[i][j] = 1)) {
+                fill(boxColor);
+                stroke(strokeColor);
+                rect(i * unitLength, j * unitLength, unitLength, unitLength);
+            }
+        }
+    }
+}
+
+document.querySelector(".addPattern").addEventListener('click', () => {
+    addPattern()
 });
