@@ -1,19 +1,3 @@
-const unitLength = 20;
-let strokeColor = "green";
-let boxColor = "#ffffff";
-let boxColor2 = "rgba(0,0,0,0.3)";
-let strokeColors = strokeColor;
-let columns; /* To be determined by window width */
-let rows;    /* To be determined by window height */
-let currentBoard;
-let nextBoard;
-let fr = 10;
-let loneliness = 2;
-let overpopulation = 3;
-let newLife = 3;
-let backColor = 0;
-
-
 function setup() {
     const canvas = createCanvas(windowWidth - 100, windowHeight - 100);
     canvas.parent(document.querySelector('#canvas'));
@@ -126,6 +110,20 @@ function mousePressed() {
 //     loop();
 // }
 
+function updateUI() {
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            if (currentBoard[i][j] === 1) {
+                fill(boxColor);
+            } else {
+                fill(backColor);
+            }
+            stroke(strokeColor);
+            rect(i * unitLength, j * unitLength, unitLength, unitLength);
+        }
+    }
+}
+
 document.querySelector(".startButton").addEventListener('click', () => {
     loop();
 });
@@ -194,53 +192,72 @@ document.querySelector(".randomButton").addEventListener('click', () => {
     randomBoard()
 });
 
-function darkModeOff() {
-    for (let i = 0; i < columns; i++) {
-        for (let j = 0; j < rows; j++) {
-            if (currentBoard[i][j] === 1) {
-                fill(boxColor);
-            } else if (nextBoard[i][j] === 1) {
-                fill(boxColor2);
-            } else {
-                fill(backColor);
-            }
+// function darkModeOff(darkOff) {
+//             backColor = "white";
+//             strokeColor = "black";
+//             boxColor = "#00FF09";
+//             updateUI()
+// };
 
-            if (backColor != "white") {
-                backColor = "white"
-            }
-
-            // else {
-            //     backColor = "black"
-            // }
-
-            // backColor = "white";
-            strokeColor = "black";
-            boxColor = "#00FF09";
-            stroke(strokeColor);
-            rect(i * unitLength, j * unitLength, unitLength, unitLength);
-        }
+function darkModeOff(darkOff) {
+    darkMode = darkOff;
+    if (darkOff) {
+        backColor = "black";
+        strokeColor = "white";
+        boxColor = "#ffffff";
+    } else {
+        backColor = "white";
+        strokeColor = "black";
+        boxColor = "#00ff09";
     }
-};
+    updateUI()
+}
 
 document.querySelector(".form-check-input").addEventListener('click', () => {
     darkModeOff()
-    darkModeOff()
 });
 
-function addPattern() {
-    console.log("!!")
-    for (let i = 0; i < columns; i++) {
-        for (let j = 0; j < rows; j++) {
-            let isLive = Math.round(Math.random());
-            if (isLive == 1 && (currentBoard[i][j] = 1)) {
-                fill(boxColor);
-                stroke(strokeColor);
-                rect(i * unitLength, j * unitLength, unitLength, unitLength);
-            }
+function addPattern1(x, y) {
+    let gliderArr = glider.split("\n");
+    for (let i = 0; i < gliderArr.length; i++) {
+        for (let j = 0; j < gliderArr[i].length; j++) {
+            currentBoard[x + j][ y + i] = gliderArr[i][j] === "." ? 0 : 1;
         }
     }
+    updateUI();
 }
 
-document.querySelector(".addPattern").addEventListener('click', () => {
-    addPattern()
+document.querySelector(".addPattern1").addEventListener('click', () => {
+    addPattern1(pointX, pointY)
 });
+
+function addPattern2(x, y) {
+    let gosperGliderGunArr = gosperGliderGun.split("\n");
+    for (let i = 0; i < gosperGliderGunArr.length; i++) {
+        for (let j = 0; j < gosperGliderGunArr[i].length; j++) {
+            currentBoard[x + j][ y + i] = gosperGliderGunArr[i][j] === "." ? 0 : 1;
+        }
+    }
+    updateUI();
+}
+
+document.querySelector(".addPattern2").addEventListener('click', () => {
+    addPattern2(pointX, pointY)
+});
+
+// function addPattern3(x, y) {
+//     pointX = parseInt(pointX.value);
+//     // console.log(pointY)
+//     // for (let i = 0; i < gosperGliderGunArr.length; i++) {
+//     //     for (let j = 0; j < gosperGliderGunArr[i].length; j++) {
+//     //         currentBoard[x + j][ y + i] = gosperGliderGunArr[i][j] === "." ? 0 : 1;
+//     //     }
+//     // }
+//     // updateUI();
+//     console.log(pointX.value)
+//     fr = parseInt(sliderRange.value);
+// }
+
+// document.querySelector(".addPattern3").addEventListener('click', () => {
+//     addPattern3()
+// });
