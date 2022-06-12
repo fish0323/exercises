@@ -192,72 +192,48 @@ document.querySelector(".randomButton").addEventListener('click', () => {
     randomBoard()
 });
 
-// function darkModeOff(darkOff) {
-//             backColor = "white";
-//             strokeColor = "black";
-//             boxColor = "#00FF09";
-//             updateUI()
-// };
-
-function darkModeOff(darkOff) {
-    darkMode = darkOff;
-    if (darkOff) {
-        backColor = "black";
-        strokeColor = "white";
-        boxColor = "#ffffff";
-    } else {
-        backColor = "white";
-        strokeColor = "black";
-        boxColor = "#00ff09";
-    }
-    updateUI()
+function darkModeOff() {
+        if (darkMode) {
+            backColor = "black";
+            strokeColor = "green";
+            boxColor = "#ffffff";
+        } if (!darkMode) {
+            backColor = "white";
+            strokeColor = "black";
+            boxColor = "#00ff09";
+        }
+        updateUI()
 }
 
-document.querySelector(".form-check-input").addEventListener('click', () => {
+document.querySelector(".form-check-input").addEventListener('change', () => {
+    darkMode = !darkMode;
     darkModeOff()
 });
 
-function addPattern1(x, y) {
-    let gliderArr = glider.split("\n");
-    for (let i = 0; i < gliderArr.length; i++) {
-        for (let j = 0; j < gliderArr[i].length; j++) {
-            currentBoard[x + j][ y + i] = gliderArr[i][j] === "." ? 0 : 1;
-        }
-    }
-    updateUI();
-}
-
 document.querySelector(".addPattern1").addEventListener('click', () => {
-    addPattern1(pointX, pointY)
+    newPattern = glider
+    addPattern(inPutPointX, inPutPointY)
 });
-
-function addPattern2(x, y) {
-    let gosperGliderGunArr = gosperGliderGun.split("\n");
-    for (let i = 0; i < gosperGliderGunArr.length; i++) {
-        for (let j = 0; j < gosperGliderGunArr[i].length; j++) {
-            currentBoard[x + j][ y + i] = gosperGliderGunArr[i][j] === "." ? 0 : 1;
-        }
-    }
-    updateUI();
-}
 
 document.querySelector(".addPattern2").addEventListener('click', () => {
-    addPattern2(pointX, pointY)
+    newPattern = gosperGliderGun
+    addPattern(inPutPointX, inPutPointY)
 });
 
-// function addPattern3(x, y) {
-//     pointX = parseInt(pointX.value);
-//     // console.log(pointY)
-//     // for (let i = 0; i < gosperGliderGunArr.length; i++) {
-//     //     for (let j = 0; j < gosperGliderGunArr[i].length; j++) {
-//     //         currentBoard[x + j][ y + i] = gosperGliderGunArr[i][j] === "." ? 0 : 1;
-//     //     }
-//     // }
-//     // updateUI();
-//     console.log(pointX.value)
-//     fr = parseInt(sliderRange.value);
-// }
+document.querySelector("#pointX").addEventListener('change', () => {
+    inPutPointX = parseInt(pointX.value);
+});
 
-// document.querySelector(".addPattern3").addEventListener('click', () => {
-//     addPattern3()
-// });
+document.querySelector("#pointY").addEventListener('change', () => {
+    inPutPointY = parseInt(pointY.value);
+});
+
+function addPattern(inPutPointX, inPutPointY) {
+    let newPatternArr = newPattern.split("\n");
+    for (let i = 0; i < newPatternArr.length; i++) {
+        for (let j = 0; j < newPatternArr[i].length; j++) {
+            currentBoard[inPutPointX + j][inPutPointY + i] = newPatternArr[i][j] === "." ? 0 : 1;
+        }
+    }
+    updateUI();
+}
