@@ -1,5 +1,5 @@
 function setup() {
-    const canvas = createCanvas(windowWidth - 100, windowHeight - 100);
+    const canvas = createCanvas(windowWidth - 300, windowHeight - 200);
     canvas.parent(document.querySelector('#canvas'));
     // background(255);
     columns = floor(width / unitLength);
@@ -27,7 +27,6 @@ function draw() {
     // background(255);
     frameRate(fr);
     generate();
-
 
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
@@ -162,7 +161,6 @@ function doo() {
 
 document.querySelector("#dieOfOverpopulation").addEventListener('change', () => {
     doo()
-    console.log(overpopulation)
 });
 
 function nlr() {
@@ -171,7 +169,6 @@ function nlr() {
 
 document.querySelector("#newLifeReproduction").addEventListener('change', () => {
     nlr()
-    console.log(newLife)
 });
 
 
@@ -193,16 +190,16 @@ document.querySelector(".randomButton").addEventListener('click', () => {
 });
 
 function darkModeOff() {
-        if (darkMode) {
-            backColor = "black";
-            strokeColor = "green";
-            boxColor = "#ffffff";
-        } if (!darkMode) {
-            backColor = "white";
-            strokeColor = "black";
-            boxColor = "#00ff09";
-        }
-        updateUI()
+    if (darkMode) {
+        backColor = "black";
+        strokeColor = "green";
+        boxColor = "#ffffff";
+    } if (!darkMode) {
+        backColor = "white";
+        strokeColor = "black";
+        boxColor = "#00ff09";
+    }
+    updateUI()
 }
 
 document.querySelector(".form-check-input").addEventListener('change', () => {
@@ -211,12 +208,12 @@ document.querySelector(".form-check-input").addEventListener('change', () => {
 });
 
 document.querySelector(".addPattern1").addEventListener('click', () => {
-    newPattern = glider
+    newPattern = glider;
     addPattern(inPutPointX, inPutPointY)
 });
 
 document.querySelector(".addPattern2").addEventListener('click', () => {
-    newPattern = gosperGliderGun
+    newPattern = gosperGliderGun;
     addPattern(inPutPointX, inPutPointY)
 });
 
@@ -237,3 +234,20 @@ function addPattern(inPutPointX, inPutPointY) {
     }
     updateUI();
 }
+
+
+window.addEventListener('keydown', function (e) {
+    if (e.key === "s") {
+        loop();
+    }
+    if (e.key === "p") {
+        noLoop();
+    }
+    if (e.key === "c") {
+        init();
+        loop();
+    }
+    if (e.key === "r") {
+        randomBoard();
+    }
+}, false);
