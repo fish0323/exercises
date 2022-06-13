@@ -1,4 +1,4 @@
-const unitLength = 20;
+const unitLength = 15;
 let strokeColor = "green";
 let boxColor = "";
 let boxColor2 = "rgba(0,0,0,0.3)";

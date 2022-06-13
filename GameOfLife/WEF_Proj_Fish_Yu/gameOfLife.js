@@ -1,5 +1,6 @@
 function setup() {
-    const canvas = createCanvas(windowWidth - 300, windowHeight - 200);
+    // const canvas = createCanvas(windowWidth - 500, windowHeight - 200);
+    const canvas = createCanvas(800,800);
     canvas.parent(document.querySelector('#canvas'));
     // background(255);
     columns = floor(width / unitLength);
@@ -27,6 +28,7 @@ function draw() {
     // background(255);
     frameRate(fr);
     generate();
+    
 
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
