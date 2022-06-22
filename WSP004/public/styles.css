@@ -1,0 +1,45 @@
+body {
+  background-image: url(./image/background.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  color: white;
+  padding: 10px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  font-size: 50px;
+  background-color: rgb(38, 235, 94);
+  height: fit-content;
+  border: solid 5px;
+  padding: 5px;
+  color: rgb(18, 225, 239);
+}
+
+.boxes {
+  display: flex;
+}
+
+.box {
+  width: 250px;
+  height: 250px;
+  /* background-color: white;
+    border-radius: 20px;
+    margin: 10px; */
+  background-image: url(./image/—Pngtree—note\ tape\ memo\ blank\ paper_5809777.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+/* .information {
+  background-color: darkgrey;
+  margin-top: 10px;
+  border: solid 5px;
+  padding: 5px;
+} */
