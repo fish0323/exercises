@@ -1,5 +1,5 @@
 body {
-  background-image: url(./image/background.png);
+  background-image: url(./image/—Pngtree—black\ brick\ wall_989135.png);
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -37,9 +37,15 @@ body {
   background-position: center;
 }
 
-/* .information {
-  background-color: darkgrey;
-  margin-top: 10px;
+#input-text{
+  position: relative;
+  top: 75px;
+  left: 15px;
+  width: 210px;
+  height: 100px;
+}
+
+.form{
   border: solid 5px;
   padding: 5px;
-} */
+}
