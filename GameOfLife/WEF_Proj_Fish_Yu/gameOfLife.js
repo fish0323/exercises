@@ -1,6 +1,6 @@
 function setup() {
-    // const canvas = createCanvas(windowWidth - 500, windowHeight - 200);
-    const canvas = createCanvas(800,800);
+    const canvas = createCanvas(windowWidth - 310, windowHeight-200);
+    // const canvas = createCanvas(800,800);
     canvas.parent(document.querySelector('#canvas'));
     // background(255);
     columns = floor(width / unitLength);
@@ -33,9 +33,9 @@ function draw() {
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             if (currentBoard[i][j] === 1) {
-                fill(boxColor);
+                fill(state1.color);
             } else if (nextBoard[i][j] === 1) {
-                fill(boxColor2);
+                fill(state2.color);
             } else {
                 fill(backColor);
             }
@@ -97,7 +97,7 @@ function mouseDragged() {
     const x = Math.floor(mouseX / unitLength);
     const y = Math.floor(mouseY / unitLength);
     currentBoard[x][y] = 1;
-    fill(boxColor);
+    fill(state1.color);
     stroke(strokeColor);
     rect(x * unitLength, y * unitLength, unitLength, unitLength);
 }
@@ -115,7 +115,7 @@ function updateUI() {
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             if (currentBoard[i][j] === 1) {
-                fill(boxColor);
+                fill(state1.color);
             } else {
                 fill(backColor);
             }
@@ -145,7 +145,7 @@ document.querySelector("#sliderRange").addEventListener('change', () => {
 
 let changeBoxColors = document.querySelector("#boxColors");
 changeBoxColors.addEventListener("change", () => {
-    boxColor = boxColors.value;
+    state1.color = boxColors.value;
 });
 
 
@@ -179,7 +179,7 @@ function randomBoard() {
         for (let j = 0; j < rows; j++) {
             let isLive = Math.round(Math.random());
             if (isLive == 1 && (currentBoard[i][j] = 1)) {
-                fill(boxColor);
+                fill(state1.color);
                 stroke(strokeColor);
                 rect(i * unitLength, j * unitLength, unitLength, unitLength);
             }
@@ -195,11 +195,11 @@ function darkModeOff() {
     if (darkMode) {
         backColor = "black";
         strokeColor = "green";
-        boxColor = "#ffffff";
+        state1.color = "#ffffff";
     } if (!darkMode) {
         backColor = "white";
         strokeColor = "black";
-        boxColor = "#00ff09";
+        state1.color = "#00ff09";
     }
     updateUI()
 }
@@ -253,3 +253,9 @@ window.addEventListener('keydown', function (e) {
         randomBoard();
     }
 }, false);
+
+function windowResized() {
+    resizeCanvas(windowWidth - 310, windowHeight-200);
+    init()
+    updateUI()
+  }

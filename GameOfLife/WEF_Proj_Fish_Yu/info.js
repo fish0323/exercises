@@ -1,7 +1,7 @@
 const unitLength = 15;
 let strokeColor = "green";
-let boxColor = "";
-let boxColor2 = "rgba(0,0,0,0.3)";
+// let boxColor = "";
+// let boxColor2 = "rgba(0,0,0,0.3)";
 let strokeColors = strokeColor;
 let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
@@ -16,7 +16,13 @@ let darkMode = true;
 let inPutPointX = 0;
 let inPutPointY = 0;
 let newPattern = "";
-let selectPattern;
+let state1 = {
+    color: ""
+};
+let state2 = {
+    color: "rgba(0,0,0,0.3)"
+};
+
 
 
 const glider = 
