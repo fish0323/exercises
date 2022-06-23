@@ -12,21 +12,38 @@
 <body>
     <div class="content">
         <div class="form">
-            <div class="box">
-                <textarea id="input-text" placeholder="enter text"></textarea>
-            </div>
-            <form action="/action_page.php">
-                <label for="myfile">Select files:</label>
-                <input type="file" id="myfile" name="myfile" multiple><br><br>
-                <input type="submit">
-            </form>
-
-            <form class="information">
-                <label for="fname">Email:</label><br>
-                <input type="email" id="fname" placeholder="Email:" ><br>
-                <label for="lname">Password:</label><br>
-                <input type="current-password" id="lname" placeholder="password:"><br><br>
-                <input type="submit" value="Submit">
+            <form action="/contact" method="POST" id="contact-form" enctype="multipart/form-data">
+                <div class="box">
+                    <textarea id="input-text" name="description" cols="20" rows="10"
+                        placeholder="enter text"></textarea>
+                </div>
+                <div>
+                    <label>
+                      Profile Picture:
+                      <input type="file" name="profile" />
+                    </label>
+                  </div>
+                  <div>
+            </label>
+        </div>
+                <div class="information">
+                    <div>
+                        <label>
+                            First Name:
+                            <input type="text" name="firstName" placeholder="Input your First name here" required />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Last Name:
+                            <input type="text" name="lastName" placeholder="Input your Last name here" required />
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Clear" />
+                  </div>
             </form>
         </div>
         <div class="boxes">

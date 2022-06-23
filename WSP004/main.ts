@@ -4,10 +4,43 @@ import express from "express";
 import { Request, Response } from "express";
 import path from "path";
 import expressSession from "express-session";
+import fs from "fs";
 
 const app = express();
 
+// Need this for form submissions
+app.use(express.urlencoded({ extended: true }))
+// Need for later lectures
+app.use(express.json())
+
 app.use(express.static('public'));
+
+// app.post('/contact', (req, res) => {
+//   // Console log the request body to see what is inside!
+//   console.log(req.body)
+//   res.end('Hello World')
+// })
+
+import formidable from 'formidable'
+
+const uploadDir = 'uploads'
+fs.mkdirSync(uploadDir, { recursive: true })
+
+const form = formidable({
+  uploadDir,
+  keepExtensions: true,
+  maxFiles: 1,
+  maxFileSize: 200 * 1024 ** 2, // the default limit is 200KB
+  filter: part => part.mimetype?.startsWith('image/') || false,
+})
+
+app.post('/contact', (req, res) => {
+  form.parse(req, (err, fields, files) => {
+    console.log({ err, fields, files })
+    res.redirect('/')
+  })
+})
+
 
 app.use(
   expressSession({
@@ -53,6 +86,8 @@ function padMonth(num: number) {
   return (num + "").padStart(2, "0");
 }
 
+
+//------------------------------------------------------------
 app.use((req, res) => {
   res.sendFile(path.resolve("./public/404.html"));
 });
