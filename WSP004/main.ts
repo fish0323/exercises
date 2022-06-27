@@ -15,12 +15,6 @@ app.use(express.json())
 
 app.use(express.static('public'));
 
-// app.post('/contact', (req, res) => {
-//   // Console log the request body to see what is inside!
-//   console.log(req.body)
-//   res.end('Hello World')
-// })
-
 import formidable from 'formidable'
 
 const uploadDir = 'uploads'
@@ -40,6 +34,16 @@ app.post('/contact', (req, res) => {
     res.redirect('/')
   })
 })
+
+app.post('/contact', (req, res) => {
+  // Console log the request body to see what is inside!
+  let { firstName, lastName, description } = req.body;
+
+  let html_content = `<h1>Hi i am ${firstName} ${lastName},desc: ${description}</h1>`
+
+  res.json(html_content)
+})
+
 
 
 app.use(
@@ -95,5 +99,5 @@ app.use((req, res) => {
 const PORT = 8080;
 
 app.listen(PORT, () => {
-    console.log(`Listening at http://localhost:${PORT}/`)
+  console.log(`Listening at http://localhost:${PORT}/`)
 })
