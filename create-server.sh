@@ -17,6 +17,7 @@ npm set-script dev "ts-node-de main.ts"
 
 echo  'node_modules
 package-lock.json
+.env
 ' > .gitignore
 
 echo '{

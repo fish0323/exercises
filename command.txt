@@ -1,2 +1,15 @@
 npx prettier --write .
 npx ts-node-dev sever.ts
+
+
+
+npm install socket.io
+
+
+
+Excel File:
+
+npm install xlsx 
+
+
+psql -U postgres
