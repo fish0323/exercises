@@ -1,5 +1,12 @@
 npx prettier --write .
+<<<<<<< HEAD
 npx ts-node-dev server.ts
+=======
+<<<<<<< HEAD
+npx ts-node-dev server.ts
+=======
+npx ts-node-dev sever.ts
+>>>>>>> 6a83c3c78d71970bd7653f9f18f6b649e2e9e12f
 
 
 
@@ -13,3 +20,4 @@ npm install xlsx
 
 
 psql -U postgres
+>>>>>>> 919117c12d6fa0a3734c385c1db9592ab6c60fbf
