@@ -1,5 +1,5 @@
 npx prettier --write .
-npx ts-node-dev sever.ts
+npx ts-node-dev server.ts
 
 
 

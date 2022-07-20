@@ -1,6 +1,0 @@
-File (.gitignore): node_modules 
-File (tsconfig.json): { 
-File (package-lock.json): { 
-File (index.js): require("ts-node/register"); 
-File (ex1.ts): import fs from "fs"; 
-File (package.json): { 

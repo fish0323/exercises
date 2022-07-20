@@ -3,15 +3,17 @@ npm init -y
 npm install express
 npm install typescript
 npm install ts-node 
-
 npm install -D ts-node-dev
-
 npm install express @types/express
+npm install express @types/express-session
 npm install express @types/node
 npm install formidable @types/formidable
 npm install jsonfile
 npm install @types/jsonfile
 npm install winston
+npm install dotenv
+npm install pg
+npm install @types/pg
 
 npm set-script dev "ts-node-de main.ts"
 
@@ -76,3 +78,14 @@ export const logger = winston.createLogger({
         new winston.transports.Console()
     ]
 });' > logger.ts
+
+echo '
+require("ts-node/register");
+require("./main");
+' > index.js
+
+echo '
+DB_NAME=demo
+DB_USERNAME=
+DB_PASSWORD=
+' > .env
