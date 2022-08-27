@@ -4,9 +4,7 @@ yarn add express
 yarn add typescript
 yarn add ts-node 
 yarn add -D ts-node-dev
-yarn add express @types/express
-yarn add express @types/express-session
-yarn add express @types/node
+yarn add -D @types/express
 yarn add formidable @types/formidable
 yarn add jsonfile
 yarn add @types/jsonfile
